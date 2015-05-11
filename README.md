@@ -1,4 +1,6 @@
 ## Backup Media Syncer
+### About
+This was created to solve a need in my personal media setup.  I'll probably only update it if my needs change.
 
 ### Requirements
 This program has only been tested with python 3.x.  It'll probably work with python 2.x with minior modifications.
