@@ -37,28 +37,28 @@ This program has only been tested with python 3.x.  It'll probably work with pyt
  
 * `_media_merge.py` - Compares the backup and original directory (does not modify contents of either).
  * The steps to accomplish the part are 
- 1. Determine if this is working with the TV shows directory or the Movies directory (lines 70-77).
- 2. Create a list of all interesting files in the original directory and in the backup directory (a file is considered interesting if it doesn't match the extension blacklist on line 21).
- 2. Save the file list from both directories as text files (with the root directory stripped off).
- 3. Look for entries that are present in the original directory but not in the backup directory.  Those need to be added to the backup directory.
- 4. Look for entries that present in the backup directory but not in the original directory.  Those need to be removed from the backup directory.
- 5. Save the results from 3 and 4 to a plaintext file. 
- * Steps 1 and 2 are handled by the `indexfiles(rootdir, outputfilepath)` function.
- * Steps 3, 4, and 5 are handled by the `compbackup(origionallog, backuplog, rotdirs, outdir)` function.
+    * 1. Determine if this is working with the TV shows directory or the Movies directory (lines 70-77).
+    * 2. Create a list of all interesting files in the original directory and in the backup directory (a file is considered interesting if it doesn't match the extension blacklist on line 21).
+    * 3. Save the file list from both directories as text files (with the root directory stripped off).
+    * 4. Look for entries that are present in the original directory but not in the backup directory.  Those need to be added to the backup directory.
+    * 5. Look for entries that present in the backup directory but not in the original directory.  Those need to be removed from the backup directory.
+    * 6. Save the results from 4 and 5 to a plaintext file. 
+ * Steps 1, 2, and 3 are handled by the `indexfiles(rootdir, outputfilepath)` function.
+ * Steps 4, 5, and 6 are handled by the `compbackup(origionallog, backuplog, rotdirs, outdir)` function.
     
  
  
 * `_sync.py` - Rectifies differences between the backup and original directory (only modifies contents of the backup directory).
  * The steps to accomplish the part are 
-1. Determine the original directory from the line in the diff file that starts with `[ORG_DIR]**`.
-2. Determine the backup directory from the line in the diff file that starts with `[BAK_DIR]**`.
-3. Look for lines that start with `[ADD]**`.
-  1. Check if the subdirectory the file will be added to exists
-  2. If not, create it
-  3. Copy the file listed on the given line from the original directory to the backup directory
-4. Look for lines that start with `[DEL]**`.
-  1. Try to delete the referenced file from the backup directory.
-5. Log any added or removed files to a logfile.
+    * 1. Determine the original directory from the line in the diff file that starts with `[ORG_DIR]**`.
+    * 2. Determine the backup directory from the line in the diff file that starts with `[BAK_DIR]**`.
+    * 3. Look for lines that start with `[ADD]**`.
+        * 1. Check if the subdirectory the file will be added to exists
+        * 2. If not, create it
+        * 3. Copy the file listed on the given line from the original directory to the backup directory
+    * 4. Look for lines that start with `[DEL]**`.
+        * 1. Try to delete the referenced file from the backup directory.
+    * 5. Log any added or removed files to a logfile.
  * Steps 1 and 2 are handled by lines 13-37.
  * Step 3 is handled by lines 44-58.
  * Step 4 is handled by lines 60-74.
